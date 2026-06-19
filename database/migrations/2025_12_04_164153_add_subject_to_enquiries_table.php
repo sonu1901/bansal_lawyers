@@ -11,6 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
+        if (! Schema::hasTable('enquiries')) {
+            return;
+        }
+
         Schema::table('enquiries', function (Blueprint $table) {
             // Add subject column if it doesn't exist
             if (!Schema::hasColumn('enquiries', 'subject')) {
@@ -24,6 +28,10 @@ return new class extends Migration
      */
     public function down(): void
     {
+        if (! Schema::hasTable('enquiries')) {
+            return;
+        }
+
         Schema::table('enquiries', function (Blueprint $table) {
             // Only drop if column exists
             if (Schema::hasColumn('enquiries', 'subject')) {

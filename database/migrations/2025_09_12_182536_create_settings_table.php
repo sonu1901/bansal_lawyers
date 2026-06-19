@@ -14,7 +14,7 @@ return new class extends Migration
         if (!Schema::hasTable('settings')) {
             Schema::create('settings', function (Blueprint $table) {
                 $table->id();
-                $table->unsignedBigInteger('office_id')->nullable();
+                $table->unsignedInteger('office_id')->nullable();
                 $table->string('date_format')->default('Y-m-d');
                 $table->string('time_format')->default('H:i:s');
                 $table->timestamps();
