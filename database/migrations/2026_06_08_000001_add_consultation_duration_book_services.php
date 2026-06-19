@@ -2,11 +2,16 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
     public function up(): void
     {
+        if (! Schema::hasTable('book_services')) {
+            return;
+        }
+
         $now = now();
 
         DB::table('book_services')->updateOrInsert(
@@ -54,6 +59,10 @@ return new class extends Migration
 
     public function down(): void
     {
+        if (! Schema::hasTable('book_services')) {
+            return;
+        }
+
         DB::table('book_services')->where('id', 2)->delete();
         DB::table('book_services')->where('id', 3)->delete();
 

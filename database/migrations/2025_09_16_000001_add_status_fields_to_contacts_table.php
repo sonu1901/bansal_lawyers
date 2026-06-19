@@ -13,6 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
+        if (! Schema::hasTable('contacts')) {
+            return;
+        }
+
         Schema::table('contacts', function (Blueprint $table) {
             $table->enum('status', ['unread', 'read', 'resolved', 'archived'])->default('unread')->after('message');
             $table->string('forwarded_to')->nullable()->after('status');
@@ -31,6 +35,10 @@ return new class extends Migration
      */
     public function down()
     {
+        if (! Schema::hasTable('contacts')) {
+            return;
+        }
+
         Schema::table('contacts', function (Blueprint $table) {
             $table->dropIndex('idx_contacts_status');
             $table->dropIndex('idx_contacts_forwarded_at');
