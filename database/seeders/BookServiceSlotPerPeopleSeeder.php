@@ -13,12 +13,10 @@ class BookServiceSlotPerPeopleSeeder extends Seeder
     public function run(): void
     {
         $now = date('Y-m-d H:i:s');
-
         $exists = DB::table('book_service_slot_per_people')
             ->where('person_id', 1)
             ->where('service_type', 1)
             ->exists();
-
         if (!$exists) {
             DB::table('book_service_slot_per_people')->insert([
                 'person_id' => 1,
