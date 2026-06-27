@@ -38,6 +38,9 @@ Route::middleware(['auth', 'verified', 'throttle:6,1'])->group(function () {
 
 /*********************Frontend Routes ***********************/
 //Home Page
+Route::get('/test/index',function(){
+    echo 'Hello word';
+});
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->middleware('throttle:web-pages')->name('home');
 Route::get('/index.html', function () {
     return redirect()->route('home', [], 301);
